@@ -30,9 +30,37 @@ python3 <skill-dir>/scripts/build_canvas.py --from-html /absolute/path/previous.
 
 Existing output files are protected unless `--force` is explicitly passed. Choose a new version when preserving an existing review matters. Outputs are portable HTML with embedded images; no server/framework is required. Open the file, or serve only its artifact directory on `127.0.0.1` and provide the live link. Do not bind a preview server to all interfaces.
 
+## Public snapshots with here.now
+
+When a public review link or publishing controls are wanted, start the local
+publishing preview rather than a generic static server:
+
+```sh
+python3 <skill-dir>/scripts/serve_canvas.py /absolute/path/review.html
+```
+
+Alternatively add `--serve` to the builder. Both commands print a loopback URL
+and keep running. The canvas's **here.now → Publish snapshot** flow uploads the
+latest layout, imagery, notes, pinned comments, and resolved feedback. Publishing
+requires that explicit action; building, opening, and editing remain local.
+Do not publish a review unless the user asks for publication or chooses the
+canvas's publish action.
+
+Anonymous here.now links last 24 hours. The publisher shows a public URL and a
+separate **Keep this link permanently** owner link. Share the public URL; keep
+the owner link private for the creator. Owner links and local publisher tokens
+are excluded from standalone HTML and feedback exports. Changes after publishing
+remain local; these links are snapshots, not a shared live comments database.
+Offline HTML still works and explains how to save and open a publishing preview.
+
 ## Validate and deliver
 
 Check the generated board in a browser: whole-image drag, background pan, resize with attached wires, cursor-centered zoom, note entry, pinning a comment, feedback persistence, JSON reload, and standalone HTML export. Use available browser tooling; native app interaction is not necessary to test this artifact. Inspect a representative screen for clipping and actual visual fidelity. New scripts must be exercised on a realistic model, including an independent flow count rather than assuming eight branches.
+
+For publishing changes, verify a fresh visitor sees notes, comments, and resolved
+feedback in the uploaded snapshot. Test failure without discarding the local
+review, explicit retry, and exclusion of owner links and local tokens. Use only
+sanitized sample content for live service checks.
 
 Explain the review controls briefly: drag any screen, drag its corner to resize, drag empty background to pan, Command/Control-scroll or +/- to zoom, **+ Note**, **Comment** then click a screen. **Export feedback** downloads JSON that the user can attach in chat; Markdown is the readable alternative. Changes save in that browser, but explicit exports are the portable backup. Existing file and localhost previews have separate browser storage.
 

@@ -82,6 +82,8 @@ def main():
     ap.add_argument('--brand',help='Product name override')
     ap.add_argument('--out',type=Path,required=True)
     ap.add_argument('--force',action='store_true',help='Explicitly replace an existing output; exports remain separate')
+    ap.add_argument('--serve',action='store_true',help='Keep a local preview running with here.now publishing')
+    ap.add_argument('--port',type=int,default=0,help='Preview port for --serve; default chooses an available port')
     args=ap.parse_args()
     if args.out.exists() and not args.force:ap.error('Output exists; use a new filename or explicitly pass --force')
     model=None;icons={}
@@ -99,6 +101,9 @@ def main():
     out=re.sub(r'@@(MODEL|ICONS|TITLE|WIDTH|HEIGHT|CSS)@@',lambda m:values[m[1]],out)
     args.out.parent.mkdir(parents=True,exist_ok=True);args.out.write_text(out)
     print(json.dumps({'path':str(args.out.resolve()),'flows':len(model['flows']),'screens':sum(len(f['steps']) for f in model['flows']),'feedback_items':len(model['annotations']),'board_id':model['boardId']}))
+    if args.serve:
+        from serve_canvas import serve
+        serve(args.out,args.port)
 
 if __name__=='__main__':
     try:main()

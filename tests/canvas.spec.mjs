@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-async function clean(page){await page.goto('/examples/onboarding.html');await page.evaluate(()=>localStorage.clear());await page.reload();}
+async function clean(page){await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();}
 async function drag(page,locator,dx,dy){const r=await locator.boundingBox();await page.mouse.move(r.x+r.width*.3,r.y+r.height*.3);await page.mouse.down();await page.mouse.move(r.x+r.width*.3+dx,r.y+r.height*.3+dy,{steps:8});await page.mouse.up();}
 
 test('whole-image drag and resize keep wires attached; background drag pans',async({page})=>{

@@ -1,10 +1,13 @@
 import copy
 import importlib.util
 import json
+import queue
 import subprocess
 import sys
 import tempfile
+import threading
 import unittest
+from urllib.request import urlopen
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -49,5 +52,23 @@ class BuilderTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             d=Path(d);(d/'example.png').write_bytes(b'image bytes')
             self.assertEqual(builder.icon_data({'Example':'example.png'},d)['Example'],'data:image/png;base64,aW1hZ2UgYnl0ZXM=')
+    def test_build_and_serve_starts_an_isolated_loopback_publishing_preview(self):
+        with tempfile.TemporaryDirectory() as d:
+            out=Path(d)/'review.html'
+            process=subprocess.Popen([sys.executable,'-u',str(SKILL/'scripts/build_canvas.py'),'--out',str(out),'--serve'],stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+            lines=queue.Queue()
+            reader=threading.Thread(target=lambda:[lines.put(line) for line in process.stdout],daemon=True)
+            reader.start()
+            try:
+                metadata=json.loads(lines.get(timeout=5))
+                preview=json.loads(lines.get(timeout=5))
+                self.assertEqual(metadata['path'],str(out.resolve()))
+                self.assertTrue(preview['url'].startswith('http://127.0.0.1:'))
+                with urlopen(preview['url'],timeout=3) as response:
+                    self.assertIn('id="publisher-config"',response.read().decode())
+                self.assertNotIn('id="publisher-config"',out.read_text())
+            finally:
+                process.terminate();process.wait(timeout=5);reader.join(timeout=5)
+                process.stdout.close();process.stderr.close()
 
 if __name__=='__main__':unittest.main()

@@ -9,7 +9,7 @@ Move screens. Follow the wires. Leave feedback. Send it back to your agent.
 [![Validate](https://img.shields.io/github/actions/workflow/status/mgalpert/flow-review/validate.yml?branch=main&style=flat-square&label=tests)](https://github.com/mgalpert/flow-review/actions/workflows/validate.yml)
 [![MIT license](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 
-[Install](#install) · [Why it exists](#why-it-exists) · [What it makes](#what-it-makes) · [Quickstart](#quickstart) · [Match your product](#match-your-product) · [Feedback](#the-feedback-loop) · [Contributing](#contributing)
+[Install](#install) · [Why it exists](#why-it-exists) · [What it makes](#what-it-makes) · [Quickstart](#quickstart) · [Publish](#publish-to-herenow) · [Match your product](#match-your-product) · [Feedback](#the-feedback-loop) · [Contributing](#contributing)
 
 ```sh
 npx skills add mgalpert/flow-review
@@ -100,6 +100,7 @@ A local, wired review board with individual screen mockups and explicit paths be
 | Free notes | Capture thoughts that apply to the broader flow |
 | Feedback export | Send JSON or readable Markdown back to your agent |
 | Portable saves | Keep the board, imagery, and feedback in one HTML file |
+| Public snapshots | Publish the current canvas, notes, and comments to a here.now link |
 | Your print layout | Arrange and resize it yourself; print the frame you choose |
 
 Independent flows stay independent. A permissions flow, a billing flow, and a local-tool setup should not become one ambiguous row of screens.
@@ -138,6 +139,41 @@ python3 skills/flow-review-canvas/scripts/build_canvas.py \
 ```
 
 See the [model reference](skills/flow-review-canvas/references/model.md) for screens, positions, wires, imagery, and annotations. Existing output files are protected unless you explicitly pass `--force`.
+
+## Publish to here.now
+
+Open a canvas with the local publishing preview:
+
+```sh
+python3 skills/flow-review-canvas/scripts/serve_canvas.py review.html
+```
+
+Or build and start the preview in one command by adding `--serve` to the builder.
+Open the printed local URL, click **here.now**, then **Publish snapshot**. The
+public link includes the current screen copy, layout, imagery, notes, pinned
+comments, and resolved feedback. **Copy public link** shares that snapshot.
+
+No account or API key is needed. [here.now](https://here.now/docs) gives anonymous
+sites a 24-hour lifetime; use **Keep this link permanently** to claim yours with
+a here.now account. Keep that owner link private. It stays separate from the
+public canvas and its HTML/feedback exports.
+
+Publishing is explicit. It sends the snapshot to here.now only after you press
+**Publish snapshot**. Further edits remain in your browser until you publish
+another snapshot; visitors do not edit a shared live database. Offline canvases
+still work: **Save HTML** preserves your latest review before starting the
+publishing preview. The server uses Python's standard library, serves only the
+selected canvas on `127.0.0.1`, and accepts snapshots up to 64 MB. Keep it running
+while publishing. Public links remain available after it stops, until their
+here.now expiry.
+
+<img src="docs/screenshots/publish-desktop.png" alt="Flow Review's here.now dialog showing a real published demo link, with the sample note and resolved comment included" width="1000">
+
+*Actual browser capture using the included example and authored demo feedback.
+The real here.now upload was checked in a fresh visitor session. The canvas is a
+snapshot; sample screens remain illustrative product mockups.*
+
+[Watch the publishing flow](docs/screenshots/publishing.webm).
 
 ## Match your product
 
@@ -207,7 +243,7 @@ skills/flow-review-canvas/
   scripts/build_canvas.py   Standard-library builder
 ```
 
-Flow and screen data live in JSON. The builder embeds that data and any supplied images in the HTML engine. Browser interactions update positions, sizes, feedback, and camera state. There is no hosted backend or runtime package install.
+Flow and screen data live in JSON. The builder embeds that data and any supplied images in the HTML engine. Browser interactions update positions, sizes, feedback, and camera state. Local review needs no hosted backend or runtime package install. The optional loopback publishing server uploads explicit snapshots to here.now using its create, upload, and finalize API; direct browser publishing is not supported by the service's CORS policy.
 
 [PRIVACY.md](PRIVACY.md) explains local storage and what exports contain.
 

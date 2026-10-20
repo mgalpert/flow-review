@@ -20,8 +20,20 @@ For changes to drag, resize, pan, zoom, annotations, or export, verify observabl
 
 The skill template is `skills/flow-review-canvas/assets/canvas.html`; the builder and model reference live alongside it. Keep their behavior in sync. Browser code is embedded directly so generated boards remain standalone.
 
+`skills/flow-review-canvas/scripts/serve_canvas.py` is the optional loopback
+publisher. Browser tests use this server and intercept publication responses;
+Python tests cover the API sequence, final confirmation, and local request
+boundary without publishing anything. A live here.now check must use sanitized
+sample content and be labeled separately from mocked tests. Never commit owner
+claim links or publisher session tokens in HTML, logs, or evidence.
+
 ## Screenshots
 
 README screenshots are actual browser captures of the working canvas. Mockup account states and permission prompts are illustrative. The native msgblast Demo image in the origin section is an app capture with simulated data. Do not publish personal information, account identifiers, or feedback from someone else’s review.
 
 `scripts/capture.mjs` can capture a local board and record a short interaction. It accepts a local HTML file as an argument. Use only a sanitized demo board for public documentation. Project icon artwork is not distributed as a reusable asset pack.
+
+`scripts/capture-publishing.mjs <loopback-preview-url>` records the here.now
+workflow using the included example and a mocked response. Only an explicit
+`--live` makes a real anonymous publication. The owner receipt stays in ignored
+`build/publishing-capture/`; publish only the screenshots, video, and public URL.

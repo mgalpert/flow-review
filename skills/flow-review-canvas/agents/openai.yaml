@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flow Review Canvas"
+  short_description: "Build wired UI canvases with movable screens and feedback"
+  default_prompt: "Use $flow-review-canvas to create or update a wired UI flow canvas with editable screens, notes, pinned comments, and a feedback export."

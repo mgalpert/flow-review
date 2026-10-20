@@ -1,0 +1,124 @@
+{
+  "version": 2,
+  "boardId": "example-onboarding",
+  "brand": "Example App",
+  "title": "Onboarding review",
+  "flows": [
+    {
+      "id": "main",
+      "title": "Shared onboarding",
+      "desc": "Separate connection types branch from the shared setup.",
+      "foot": "Concept only; no app actions or permission requests are executed.",
+      "steps": [
+        {
+          "id": "welcome",
+          "title": "Connect your tools",
+          "copy": "Bring your existing conversations together.",
+          "body": "<div class=\"primary\">Get started</div>",
+          "caption": "Welcome and shared setup.",
+          "tag": "Example App"
+        },
+        {
+          "id": "review",
+          "title": "Review connections",
+          "copy": "Only verified connections are ready.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Messages</span><small>Set up</small></div><div class=\"row\"><span>CLIs</span><small>Set up</small></div></div><div class=\"primary\">Continue</div>",
+          "caption": "Each setup path returns here.",
+          "tag": "Example App"
+        }
+      ]
+    },
+    {
+      "id": "messages",
+      "title": "Messages",
+      "desc": "Existing conversations and Messages-specific permissions.",
+      "foot": "Keep history access, sending, and Contacts as independent grants.",
+      "steps": [
+        {
+          "id": "messages-start",
+          "title": "Connect Messages",
+          "copy": "Choose the Messages features you want.",
+          "body": "<div class=\"primary\">Set up Messages</div>",
+          "caption": "Separate from local CLI setup.",
+          "tag": "Example App"
+        },
+        {
+          "id": "messages-ready",
+          "title": "Review conversations",
+          "copy": "Choose the chats to connect.",
+          "body": "<div class=\"primary\">Add selected</div>",
+          "caption": "Return to connection review.",
+          "tag": "Example App"
+        }
+      ]
+    },
+    {
+      "id": "clis",
+      "title": "CLIs",
+      "desc": "Local installation, accounts and workspace identity.",
+      "foot": "A setup guide alone is not a ready conversation.",
+      "steps": [
+        {
+          "id": "clis-start",
+          "title": "Connect local tools",
+          "copy": "Check installation and account status.",
+          "body": "<div class=\"primary\">Check tools</div>",
+          "caption": "No Messages permissions on this path.",
+          "tag": "Example App"
+        },
+        {
+          "id": "clis-ready",
+          "title": "Review local tools",
+          "copy": "Add the tools that passed their checks.",
+          "body": "<div class=\"primary\">Add ready tools</div>",
+          "caption": "Return to connection review.",
+          "tag": "Example App"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "welcome",
+      "to": "review",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "welcome",
+      "to": "messages-start",
+      "type": "branch",
+      "label": "Messages"
+    },
+    {
+      "from": "messages-start",
+      "to": "messages-ready",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "messages-ready",
+      "to": "review",
+      "type": "return",
+      "label": "Return"
+    },
+    {
+      "from": "welcome",
+      "to": "clis-start",
+      "type": "branch",
+      "label": "CLIs"
+    },
+    {
+      "from": "clis-start",
+      "to": "clis-ready",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "clis-ready",
+      "to": "review",
+      "type": "return",
+      "label": "Return"
+    }
+  ]
+}

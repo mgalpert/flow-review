@@ -1,0 +1,15 @@
+{
+  "name": "flow-review",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A standalone Agent Skill for reviewing wired UI flows with notes and exportable feedback.",
+  "scripts": {
+    "build:example": "python3 skills/flow-review-canvas/scripts/build_canvas.py --model skills/flow-review-canvas/assets/example.json --out examples/onboarding.html --force",
+    "test": "python3 -m unittest discover -s tests -p 'test_*.py' -v",
+    "test:browser": "playwright test",
+    "screenshots": "node scripts/capture.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}

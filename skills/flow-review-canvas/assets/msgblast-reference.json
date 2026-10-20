@@ -1,0 +1,595 @@
+{
+  "version": 2,
+  "flows": [
+    {
+      "id": "main",
+      "title": "The main journey",
+      "desc": "A short shared path. Add connections now, or finish setup later.",
+      "steps": [
+        {
+          "title": "Your AI, together",
+          "copy": "Ask once. Read replies in one place.",
+          "body": "<div class=\"hero-orbit\"></div><div class=\"box\"><div class=\"row\"><span>Desktop apps</span><small class=\"neutral\">Muse · Grok Bot · Wabi</small></div><div class=\"row\"><span>Websites</span><small class=\"neutral\">Your signed-in accounts</small></div><div class=\"row\"><span>Messages</span><small class=\"neutral\">Existing conversations</small></div><div class=\"row\"><span>CLIs</span><small class=\"neutral\">Local tools</small></div></div><div class=\"primary\">Get started</div><div class=\"secondary\">Set up later</div>",
+          "caption": "Begin without an integration-choice gate.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "main-1"
+        },
+        {
+          "title": "Connect what’s available",
+          "copy": "We found supported apps on this Mac.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Muse</span><small class=\"neutral\">Detected</small></div><div class=\"row\"><span>Grok Bot</span><small class=\"neutral\">Detected</small></div><div class=\"row\"><span>Wabi</span><small class=\"neutral\">Detected</small></div></div><div class=\"primary\">Enable app access</div><div class=\"secondary\">Other ways to connect</div><p class=\"micro\">Approve app control and screen access in macOS.</p>",
+          "caption": "Desktop access uses flow 02. Other connections use flows 03–06.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "main-2"
+        },
+        {
+          "title": "Choose what to use",
+          "copy": "Turn on verified connections. Add more anytime.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Muse</span><small class=\"good\">Ready · Side chats</small></div><div class=\"row\"><span>Grok Bot</span><small class=\"good\">Ready</small></div><div class=\"row\"><span>Wabi</span><small class=\"warn\">Sign in</small></div><div class=\"row\"><span>Codex CLI</span><small class=\"good\">Ready</small></div></div><div class=\"primary\">Continue with 3 connections</div><div class=\"secondary\">Add another connection</div>",
+          "caption": "Detected apps do not count as ready.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "main-3"
+        },
+        {
+          "title": "Make msgblast yours",
+          "copy": "Help shape msgblast. You can do this anytime from Help.",
+          "body": "<div class=\"feature\"><strong>Share feedback</strong><p>Tell us what works and what could be better.</p></div><div class=\"feature\"><strong>Build a new feature</strong><p>Explore contributing to msgblast.</p></div><div class=\"primary\">Start chatting</div>",
+          "caption": "Optional contribution information; no consent toggle or automatic data sharing.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "main-4"
+        }
+      ],
+      "foot": "Shared access does not connect accounts automatically. At least one chat-ready connection is needed to continue into chat."
+    },
+    {
+      "id": "desktop",
+      "title": "Desktop app access",
+      "desc": "One shared setup. macOS approvals appear only when needed.",
+      "steps": [
+        {
+          "title": "Enable app access",
+          "copy": "Let msgblast send messages and read replies in your apps.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Control apps</span><small class=\"neutral\">Accessibility</small></div><div class=\"row\"><span>Read app screens</span><small class=\"neutral\">Screen Recording</small></div></div><div class=\"primary\">Enable access</div><div class=\"secondary\">Not now</div><p class=\"micro\">You approve each request in macOS.</p>",
+          "caption": "Bundled driver; no separate installation step.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "desktop-1"
+        },
+        {
+          "title": "Allow app control",
+          "copy": "Turn on the requested msgblast entry in System Settings.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Privacy & Security</span><small class=\"neutral\">Accessibility</small></div><div class=\"row\"><span>msgblast</span><small class=\"neutral\">Off → On</small></div></div><div class=\"primary\">Open System Settings</div><div class=\"secondary\">Check again</div><p class=\"micro\">Return here after enabling access.</p>",
+          "caption": "Illustrative handoff. Exact owner and displayed name require bundled-build verification.",
+          "tag": "macOS · illustrative",
+          "icon": "⚙",
+          "id": "desktop-2"
+        },
+        {
+          "title": "Allow screen access",
+          "copy": "Allow msgblast to read replies from app screens.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Privacy & Security</span><small class=\"neutral\">Screen Recording</small></div><div class=\"row\"><span>msgblast</span><small class=\"neutral\">Off → On</small></div></div><div class=\"primary\">Open System Settings</div><div class=\"secondary\">Check again</div><p class=\"micro\">Reopen the helper if macOS asks you to.</p>",
+          "caption": "Separate approval. Full Disk Access does not grant this.",
+          "tag": "macOS · illustrative",
+          "icon": "▣",
+          "id": "desktop-3"
+        },
+        {
+          "title": "Check your apps",
+          "copy": "Access is checked separately from app readiness.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>App control</span><small class=\"good\">Allowed</small></div><div class=\"row\"><span>Screen access</span><small class=\"good\">Allowed</small></div><div class=\"row\"><span>Muse</span><small class=\"good\">Ready · Side chats</small></div><div class=\"row\"><span>Grok Bot</span><small class=\"good\">Ready</small></div><div class=\"row\"><span>Wabi</span><small class=\"warn\">Open and sign in</small></div></div><div class=\"primary\">Continue with ready apps</div><div class=\"secondary\">Open Wabi</div>",
+          "caption": "Check connections without sending a test message.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "desktop-4"
+        }
+      ],
+      "foot": "Design intent: msgblast branding throughout. Packaging alone does not prove a single TCC entry. Preserve separate underlying grant checks; show helper-specific guidance if the signed build requires it."
+    },
+    {
+      "id": "messages",
+      "title": "Messages",
+      "desc": "Separate permissions for history, sending, and optional contact lookup.",
+      "steps": [
+        {
+          "title": "Connect Messages",
+          "copy": "Enable the parts you want. You can skip this setup.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Read history</span><small class=\"neutral\">Full Disk Access</small></div><div class=\"row\"><span>Send messages</span><small class=\"neutral\">Automation</small></div><div class=\"row\"><span>Find people</span><small class=\"neutral\">Contacts · Optional</small></div></div><div class=\"primary\">Set up Messages</div><div class=\"secondary\">Not now</div>",
+          "caption": "Messages permissions are independent of desktop app access.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "messages-1"
+        },
+        {
+          "title": "Allow history access",
+          "copy": "Enable msgblast in Full Disk Access.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Privacy & Security</span><small class=\"neutral\">Full Disk Access</small></div><div class=\"row\"><span>msgblast</span><small class=\"neutral\">Off → On</small></div></div><div class=\"primary\">Open System Settings</div><div class=\"secondary\">Check again</div><p class=\"micro\">Messages history stays read-only.</p>",
+          "caption": "Illustrative System Settings handoff. Read access never edits Messages’ database.",
+          "tag": "macOS · illustrative",
+          "icon": "⚙",
+          "id": "messages-2"
+        },
+        {
+          "title": "Allow sending",
+          "copy": "macOS asks before msgblast can control Messages.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>msgblast wants to control Messages</span><small class=\"neutral\"></small></div></div><div class=\"primary\">Allow</div><div class=\"secondary\">Don’t Allow</div><p class=\"micro\">Contacts is a separate, optional request when finding people.</p>",
+          "caption": "Automation approval is not evidence of message delivery. Contacts denial must remain recoverable.",
+          "tag": "macOS · illustrative",
+          "icon": "↗",
+          "id": "messages-3"
+        },
+        {
+          "title": "Review found agents",
+          "copy": "Choose the existing chats to add.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>☑ Fo</span><small class=\"neutral\">Example fixture</small></div><div class=\"row\"><span>☑ Poke</span><small class=\"neutral\">Example fixture</small></div><div class=\"row\"><span>☐ Instinct</span><small class=\"neutral\">Example fixture</small></div></div><div class=\"primary\">Add selected</div><div class=\"secondary\">Skip</div><p class=\"micro\">Optional: Allow Contacts to show names and suggestions.</p>",
+          "caption": "Synthetic agent names for review. Return to the connection list.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "messages-4"
+        }
+      ],
+      "foot": "No live messages are sent during permission setup. Contact access is optional; its macOS consent is a separate grant, never bundled with Automation."
+    },
+    {
+      "id": "contacts",
+      "title": "Optional Contacts access",
+      "desc": "Ask only when the user wants names and people suggestions.",
+      "steps": [
+        {
+          "title": "Find people more easily",
+          "copy": "Use contact names and suggestions when connecting Messages.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Contact lookup</span><small class=\"neutral\">Optional</small></div><div class=\"row\"><span>Messages sending</span><small class=\"neutral\">Independent permission</small></div></div><div class=\"primary\">Allow Contacts</div><div class=\"secondary\">Not now</div>",
+          "caption": "Explain the benefit before requesting OS access.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "contacts-1"
+        },
+        {
+          "title": "Allow contact access?",
+          "copy": "msgblast would like access to your contacts.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Find names and suggest people</span><small class=\"neutral\">Contacts</small></div></div><div class=\"primary\">Allow</div><div class=\"secondary\">Don’t Allow</div><p class=\"micro\">The exact macOS dialog and access choices depend on OS version.</p>",
+          "caption": "Illustrative macOS consent. Do not imply this also enables Messages sending.",
+          "tag": "macOS · illustrative",
+          "icon": "m",
+          "id": "contacts-2"
+        },
+        {
+          "title": "Continue without Contacts",
+          "copy": "You can still use your other connections.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Contacts</span><small class=\"neutral\">Not enabled</small></div><div class=\"row\"><span>Other ready connections</span><small class=\"good\">Available</small></div></div><div class=\"primary\">Continue</div><div class=\"secondary\">Manage in Settings</div>",
+          "caption": "Keep contact lookup optional. Check actual grant state before using Contacts.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "contacts-3"
+        }
+      ],
+      "foot": "Request Contacts just in time, independently of app control, screen recording, Messages history, and sending. Handle denied or limited access according to the OS response."
+    },
+    {
+      "id": "websites",
+      "title": "Websites & browser import",
+      "desc": "Sign in normally, or explicitly choose a browser import.",
+      "steps": [
+        {
+          "title": "Connect your websites",
+          "copy": "Use the accounts you already have.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>ChatGPT</span><small class=\"neutral\">Sign in</small></div><div class=\"row\"><span>Claude</span><small class=\"neutral\">Sign in</small></div><div class=\"row\"><span>Gemini</span><small class=\"neutral\">Sign in</small></div><div class=\"row\"><span>Grok</span><small class=\"neutral\">Sign in</small></div></div><div class=\"primary\">Sign in</div><div class=\"secondary\">Import from browser</div><div class=\"secondary\">Not now</div>",
+          "caption": "Website authentication remains separate from desktop app control.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "websites-1"
+        },
+        {
+          "title": "Import browser sign-ins?",
+          "copy": "Choose a browser. Import is optional.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>○ Chrome</span><small class=\"neutral\">Choose</small></div><div class=\"row\"><span>○ Safari</span><small class=\"neutral\">Choose</small></div></div><div class=\"primary\">Import selected</div><div class=\"secondary\">Skip import</div><p class=\"micro\">Nothing is imported without your choice.</p>",
+          "caption": "In-app opt-in, not an OS permission. Show only supported import sources.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "websites-2"
+        },
+        {
+          "title": "Review website connections",
+          "copy": "Only confirmed signed-in accounts are ready.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>ChatGPT</span><small class=\"good\">Ready</small></div><div class=\"row\"><span>Claude</span><small class=\"warn\">Sign in</small></div><div class=\"row\"><span>Gemini</span><small class=\"neutral\">Not connected</small></div></div><div class=\"primary\">Add ready connections</div><div class=\"secondary\">Connect another website</div>",
+          "caption": "Unconfirmed or failed imports stay unconnected. Return to connection review.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "websites-3"
+        }
+      ],
+      "foot": "Use the existing sign-in and supported import mechanisms. A discovered browser profile is not proof of authenticated website access."
+    },
+    {
+      "id": "local",
+      "title": "CLIs",
+      "desc": "A separate local-tool flow. No Messages permissions or chat discovery.",
+      "steps": [
+        {
+          "title": "Connect CLIs",
+          "copy": "Use optional CLI conversations on this Mac.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Codex CLI</span><small class=\"neutral\">Check installation</small></div><div class=\"row\"><span>Claude Code</span><small class=\"neutral\">Check installation</small></div><div class=\"row\"><span>OpenClaw</span><small class=\"neutral\">Setup guide</small></div><div class=\"row\"><span>Hermes</span><small class=\"neutral\">Setup guide</small></div></div><div class=\"primary\">Check tools</div><div class=\"secondary\">Not now</div>",
+          "caption": "Setup guides are navigation, not ready connections.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "local-1"
+        },
+        {
+          "title": "Finish CLI setup",
+          "copy": "Install or sign in using the tool’s own setup.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Installation</span><small class=\"good\">Found</small></div><div class=\"row\"><span>Local account</span><small class=\"warn\">Sign in needed</small></div><div class=\"row\"><span>Workspace</span><small class=\"neutral\">Choose folder</small></div></div><div class=\"primary\">Open setup instructions</div><div class=\"secondary\">Check again</div>",
+          "caption": "Each integration keeps its own authentication and workspace identity.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "local-2"
+        },
+        {
+          "title": "Review CLIs",
+          "copy": "Add the tools that passed their checks.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Codex CLI</span><small class=\"good\">Ready</small></div><div class=\"row\"><span>Claude Code</span><small class=\"warn\">Sign in</small></div><div class=\"row\"><span>OpenClaw</span><small class=\"neutral\">Setup needed</small></div><div class=\"row\"><span>Hermes</span><small class=\"neutral\">Setup needed</small></div></div><div class=\"primary\">Add ready tools</div><div class=\"secondary\">Set up later</div>",
+          "caption": "Only configured, chat-ready integrations count toward Continue.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "local-3"
+        }
+      ],
+      "foot": "A missing executable, setup guide, or account check failure must not be silently marked ready. Setup checks do not make paid model requests."
+    },
+    {
+      "id": "recovery",
+      "title": "Recovery & deferred setup",
+      "desc": "Keep a way forward without showing every error as another wizard page.",
+      "steps": [
+        {
+          "title": "Access still needed",
+          "copy": "Finish enabling access, or set up later.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>App control</span><small class=\"good\">Allowed</small></div><div class=\"row\"><span>Screen access</span><small class=\"warn\">Off</small></div></div><div class=\"primary\">Open System Settings</div><div class=\"secondary\">Check again</div><div class=\"secondary\">Continue with other connections</div>",
+          "caption": "Do not repeat permission prompts in a loop. Recheck actual grants.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "recovery-1"
+        },
+        {
+          "title": "Finish connecting Wabi",
+          "copy": "Open the app and sign in to your account.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Installed</span><small class=\"good\">Found</small></div><div class=\"row\"><span>App state</span><small class=\"warn\">Open and sign in</small></div></div><div class=\"primary\">Open Wabi</div><div class=\"secondary\">Check connection</div><div class=\"secondary\">Set up later</div>",
+          "caption": "Missing apps instead show an install/open action. No false Ready status.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "recovery-2"
+        },
+        {
+          "title": "Finish access setup",
+          "copy": "The connection helper needs attention.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Helper status</span><small class=\"warn\">Setup required</small></div></div><div class=\"primary\">Retry setup</div><div class=\"secondary\">Troubleshoot</div><div class=\"secondary\">Continue with other connections</div><p class=\"micro\">If macOS requests it, reopen the helper and check access again.</p>",
+          "caption": "Unknown stays unknown. Successful setup exit alone does not prove grants.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "recovery-3"
+        }
+      ],
+      "foot": "If zero connections are ready, allow leaving setup for a non-chat home with clear setup actions. Do not label an empty selection as ready to chat."
+    },
+    {
+      "id": "settings",
+      "title": "Settings & ongoing access",
+      "desc": "The same checks remain available after onboarding.",
+      "steps": [
+        {
+          "title": "Apps & access",
+          "copy": "Manage connected apps and shared desktop access.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>App control</span><small class=\"good\">Allowed</small></div><div class=\"row\"><span>Screen access</span><small class=\"good\">Allowed</small></div></div><div class=\"primary\">Check access</div><div class=\"box\"><div class=\"row\"><span>Muse</span><small class=\"good\">On · Ready</small></div><div class=\"row\"><span>Grok Bot</span><small class=\"good\">On · Ready</small></div><div class=\"row\"><span>Wabi</span><small class=\"neutral\">Off · Sign in</small></div></div><div class=\"secondary\">Add a connection</div>",
+          "caption": "Friendly labels summarize independent verified grants. Expand details when attention is needed.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "settings-1"
+        },
+        {
+          "title": "More connections",
+          "copy": "Manage each integration’s own access.",
+          "body": "<div class=\"box\"><div class=\"row\"><span>Messages history</span><small class=\"neutral\">Not enabled</small></div><div class=\"row\"><span>Messages sending</span><small class=\"neutral\">Not enabled</small></div><div class=\"row\"><span>Contacts</span><small class=\"neutral\">Optional · Off</small></div><div class=\"row\"><span>Website accounts</span><small class=\"neutral\">Manage</small></div><div class=\"row\"><span>Browser import</span><small class=\"neutral\">Optional</small></div><div class=\"row\"><span>Local tools</span><small class=\"neutral\">Manage</small></div></div><div class=\"primary\">Done</div>",
+          "caption": "Return to feature-specific setup without rerunning the whole onboarding.",
+          "tag": "msgblast",
+          "icon": "m",
+          "id": "settings-2"
+        }
+      ],
+      "foot": "Turning an app off in msgblast stops using that connection. OS permissions are managed in System Settings; do not imply an in-app toggle revokes TCC."
+    }
+  ],
+  "positions": {
+    "main-1": {
+      "x": 230,
+      "y": 150
+    },
+    "main-2": {
+      "x": 850,
+      "y": 150
+    },
+    "main-3": {
+      "x": 1470,
+      "y": 150
+    },
+    "main-4": {
+      "x": 2090,
+      "y": 150
+    },
+    "desktop-1": {
+      "x": 230,
+      "y": 840
+    },
+    "desktop-2": {
+      "x": 850,
+      "y": 840
+    },
+    "desktop-3": {
+      "x": 1470,
+      "y": 840
+    },
+    "desktop-4": {
+      "x": 2090,
+      "y": 840
+    },
+    "messages-1": {
+      "x": 230,
+      "y": 1530
+    },
+    "messages-2": {
+      "x": 850,
+      "y": 1530
+    },
+    "messages-3": {
+      "x": 1470,
+      "y": 1530
+    },
+    "messages-4": {
+      "x": 2090,
+      "y": 1530
+    },
+    "contacts-1": {
+      "x": 230,
+      "y": 2220
+    },
+    "contacts-2": {
+      "x": 850,
+      "y": 2220
+    },
+    "contacts-3": {
+      "x": 1470,
+      "y": 2220
+    },
+    "websites-1": {
+      "x": 230,
+      "y": 2910
+    },
+    "websites-2": {
+      "x": 850,
+      "y": 2910
+    },
+    "websites-3": {
+      "x": 1470,
+      "y": 2910
+    },
+    "local-1": {
+      "x": 230,
+      "y": 3600
+    },
+    "local-2": {
+      "x": 850,
+      "y": 3600
+    },
+    "local-3": {
+      "x": 1470,
+      "y": 3600
+    },
+    "recovery-1": {
+      "x": 230,
+      "y": 4290
+    },
+    "recovery-2": {
+      "x": 850,
+      "y": 4290
+    },
+    "recovery-3": {
+      "x": 1470,
+      "y": 4290
+    },
+    "settings-1": {
+      "x": 230,
+      "y": 4980
+    },
+    "settings-2": {
+      "x": 850,
+      "y": 4980
+    }
+  },
+  "edges": [
+    {
+      "from": "main-1",
+      "to": "main-2",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "main-2",
+      "to": "main-3",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "main-3",
+      "to": "main-4",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "desktop-1",
+      "to": "desktop-2",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "desktop-2",
+      "to": "desktop-3",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "desktop-3",
+      "to": "desktop-4",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "messages-1",
+      "to": "messages-2",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "messages-2",
+      "to": "messages-3",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "messages-3",
+      "to": "messages-4",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "contacts-1",
+      "to": "contacts-2",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "contacts-2",
+      "to": "contacts-3",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "websites-1",
+      "to": "websites-2",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "websites-2",
+      "to": "websites-3",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "local-1",
+      "to": "local-2",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "local-2",
+      "to": "local-3",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "recovery-1",
+      "to": "recovery-2",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "recovery-2",
+      "to": "recovery-3",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "settings-1",
+      "to": "settings-2",
+      "type": "sequence",
+      "label": ""
+    },
+    {
+      "from": "main-2",
+      "to": "desktop-1",
+      "type": "branch",
+      "label": "Desktop apps"
+    },
+    {
+      "from": "desktop-4",
+      "to": "main-3",
+      "type": "return",
+      "label": "Return to connections"
+    },
+    {
+      "from": "main-2",
+      "to": "messages-1",
+      "type": "branch",
+      "label": "Messages"
+    },
+    {
+      "from": "messages-4",
+      "to": "main-3",
+      "type": "return",
+      "label": "Return to connections"
+    },
+    {
+      "from": "main-2",
+      "to": "websites-1",
+      "type": "branch",
+      "label": "Websites"
+    },
+    {
+      "from": "websites-3",
+      "to": "main-3",
+      "type": "return",
+      "label": "Return to connections"
+    },
+    {
+      "from": "main-2",
+      "to": "local-1",
+      "type": "branch",
+      "label": "CLIs"
+    },
+    {
+      "from": "local-3",
+      "to": "main-3",
+      "type": "return",
+      "label": "Return to connections"
+    },
+    {
+      "from": "messages-1",
+      "to": "contacts-1",
+      "type": "branch",
+      "label": "Optional Contacts"
+    },
+    {
+      "from": "contacts-3",
+      "to": "messages-4",
+      "type": "return",
+      "label": "Continue Messages"
+    },
+    {
+      "from": "desktop-4",
+      "to": "recovery-1",
+      "type": "branch",
+      "label": "Access still needed"
+    },
+    {
+      "from": "main-4",
+      "to": "settings-1",
+      "type": "branch",
+      "label": "Later: Settings"
+    }
+  ],
+  "brand": "msgblast",
+  "boardId": "msgblast-onboarding-reference",
+  "title": "msgblast onboarding review",
+  "annotations": []
+}

@@ -212,7 +212,7 @@ python3 skills/flow-review-canvas/scripts/build_canvas.py \
   --out review-v2.html
 ```
 
-Browser storage saves work locally, but explicit exports are your portable backup. Opening a file directly and serving it on localhost create separate browser-storage contexts. The board does not send your feedback anywhere automatically.
+Browser storage saves work locally, but explicit exports are your portable backup. If storage is full or blocked, editing and feedback keep working in the current tab; a persistent warning reminds you to export before reloading. Opening a file directly and serving it on localhost create separate browser-storage contexts. The board does not send your feedback anywhere automatically.
 
 ## Canvas controls
 
@@ -227,7 +227,7 @@ Browser storage saves work locally, but explicit exports are your portable backu
 | Add a note | **+ Note**, or `N` |
 | Pin a comment | **Comment**, or `C`, then click a screen |
 | Cancel comment mode | `Esc` |
-| Edit screen text | **Edit copy** |
+| Edit canvas text | Click a heading, description, or caption and type |
 | Copy review JSON | **Copy feedback JSON** in the feedback sidebar |
 | Save a portable board | **Save HTML** |
 | Print | Arrange the tan frame, then **Print canvas** |

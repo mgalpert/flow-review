@@ -95,7 +95,7 @@ A local, wired review board with individual screen mockups and explicit paths be
 | Wired flows | Follow sequences, optional branches, recovery, and returns |
 | Whole-screen dragging | Grab anywhere on a screen to move it |
 | Resizable screens | Resize with the lower-right corner; wires follow |
-| Canvas navigation | Drag empty space to pan; zoom from 20% to 400% |
+| Canvas navigation | Drag empty space to pan; zoom from 20% to 400%; hide the sidebar for more room |
 | Pinned comments | Point to a specific spot on a screen |
 | Free notes | Capture thoughts that apply to the broader flow |
 | Feedback export | Copy JSON to your clipboard, or download JSON or readable Markdown |
@@ -218,6 +218,7 @@ Browser storage saves work locally, but explicit exports are your portable backu
 
 | Action | Control |
 | --- | --- |
+| Hide or show the sidebar | **Hide sidebar** / **Show sidebar** in the header |
 | Move a screen | Drag anywhere on it, or its header |
 | Resize a screen | Drag its lower-right blue corner |
 | Pan | Drag empty background; Space-drag also works |

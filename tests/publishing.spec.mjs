@@ -101,6 +101,23 @@ test('updates keep the same public link and removal blanks it only after confirm
   expect(removals[0].publication.siteUrl).toBe(publication.siteUrl);
   await expect(dialog.locator('.publish-status')).toContainText('blank page');
   await expect(page.getByRole('textbox',{name:'Canvas note',exact:true})).toHaveValue('Updated review feedback.');
+  await expect(dialog.getByRole('heading')).toHaveText('Review removed');
+  await expect(dialog.locator('.publish-result')).toBeHidden();
+  await expect(dialog.locator('.publish-link')).not.toHaveAttribute('href');
+  await expect(dialog.locator('.publish-owner')).toBeHidden();
+  await expect(dialog.getByRole('button',{name:'Copy public link',exact:true})).toBeHidden();
+  await page.reload();await page.locator('#hereNow').click();
+  await expect(dialog.getByRole('heading')).toHaveText('Review removed');
+  await expect(dialog.locator('.publish-result')).toBeHidden();
+  await expect(dialog.locator('.publish-owner')).toBeHidden();
+  await dialog.getByRole('button',{name:'Republish review',exact:true}).click();
+  await expect(dialog.locator('.publish-link')).toBeVisible();
+  await expect(dialog.locator('.publish-link')).toHaveText(publication.siteUrl);
+  await expect(dialog.getByRole('button',{name:'Update published link',exact:true})).toBeEnabled();
+  expect(writes).toHaveLength(3);
+  expect(writes[2].publication).toEqual({siteUrl:publication.siteUrl,claimUrl:publication.claimUrl});
+  expect(writes[2].html).toContain('Updated review feedback.');
+
 });
 
 test('failed updates preserve the published link and allow an explicit retry',async({page})=>{

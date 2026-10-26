@@ -95,10 +95,10 @@ A local, wired review board with individual screen mockups and explicit paths be
 | Wired flows | Follow sequences, optional branches, recovery, and returns |
 | Whole-screen dragging | Grab anywhere on a screen to move it |
 | Resizable screens | Resize with the lower-right corner; wires follow |
-| Canvas navigation | Drag empty space to pan; zoom from 20% to 400% |
+| Canvas navigation | Drag empty space to pan; zoom from 20% to 400%; hide the sidebar for more room |
 | Pinned comments | Point to a specific spot on a screen |
 | Free notes | Capture thoughts that apply to the broader flow |
-| Feedback export | Send JSON or readable Markdown back to your agent |
+| Feedback export | Copy JSON to your clipboard, or download JSON or readable Markdown |
 | Portable saves | Keep the board, imagery, and feedback in one HTML file |
 | Public snapshots | Publish the current canvas, notes, and comments to a here.now link |
 | Your print layout | Arrange and resize it yourself; print the frame you choose |
@@ -195,9 +195,11 @@ Icons are local raster image paths or image data URLs. The builder embeds them i
 
 1. **Review.** Drag whole screens, resize them, and zoom into details.
 2. **Annotate.** Add a note for a general thought, or pin a comment to a screen.
-3. **Export.** Click **Export feedback** for the full JSON review, or download readable Markdown from the feedback sidebar.
-4. **Return it.** Attach that file in your agent conversation.
+3. **Export.** Click **Copy feedback JSON** in the feedback sidebar to copy the full review, **Export feedback** to download JSON, or download readable Markdown.
+4. **Return it.** Paste the copied JSON into your agent conversation, or attach the downloaded file.
 5. **Revise.** The agent maps comments to stable screen IDs and updates the board without discarding your arrangement or unresolved feedback.
+
+Copy and download use the same full JSON review, including layout, comments, resolution state, and any imagery embedded in screen bodies. Image-heavy boards can produce large clipboard text. If clipboard access is unavailable or denied, the canvas points you to **Export feedback**; nothing is discarded.
 
 A **comment** belongs to a screen and a relative point on it. Its pin follows movement and resizing. A **note** sits freely on the canvas and describes the wider flow. Both can be edited, moved, marked resolved, and exported.
 
@@ -216,6 +218,7 @@ Browser storage saves work locally, but explicit exports are your portable backu
 
 | Action | Control |
 | --- | --- |
+| Hide or show the sidebar | **Hide sidebar** / **Show sidebar** in the header |
 | Move a screen | Drag anywhere on it, or its header |
 | Resize a screen | Drag its lower-right blue corner |
 | Pan | Drag empty background; Space-drag also works |
@@ -225,6 +228,7 @@ Browser storage saves work locally, but explicit exports are your portable backu
 | Pin a comment | **Comment**, or `C`, then click a screen |
 | Cancel comment mode | `Esc` |
 | Edit screen text | **Edit copy** |
+| Copy review JSON | **Copy feedback JSON** in the feedback sidebar |
 | Save a portable board | **Save HTML** |
 | Print | Arrange the tan frame, then **Print canvas** |
 

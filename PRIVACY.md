@@ -4,7 +4,9 @@ The generated canvas runs locally in your browser. It contains no analytics, rem
 
 The browser stores your review in local storage under a board-specific key. Notes, comments, screen copy, layout, and camera position stay in that browser until you export, explicitly publish, or clear its storage. File and localhost previews have separate storage contexts.
 
-JSON exports contain the board’s flows, screen copy, layout, wires, notes, comment text and anchors, resolution state, camera position, and timestamps. Markdown exports contain readable feedback and screen references. HTML exports include the review and any embedded imagery. Review exports before sharing them, especially when your project contains private data.
+Clicking **Copy feedback JSON** writes the full review to your system clipboard, replacing its previous contents. The canvas does not read the clipboard or send copied feedback to a service. Clipboard managers and other applications may retain or access copied text.
+
+Copied JSON and JSON exports contain the board’s flows, screen copy, layout, wires, notes, comment text and anchors, resolution state, camera position, and timestamps. Markdown exports contain readable feedback and screen references. HTML exports include the review and any embedded imagery. Review exports before sharing them, especially when your project contains private data.
 
 The builder reads the model, optional existing board, optional image files, and optional CSS you explicitly provide. It writes the requested HTML file. It does not contact providers, change system permissions, or send messages.
 

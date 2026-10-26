@@ -1,3 +1,4 @@
+import { toolbarClick } from './toolbar.mjs';
 import { test, expect } from '@playwright/test';
 async function clean(page){await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();}
 async function drag(page,locator,dx,dy){const r=await locator.boundingBox();await page.mouse.move(r.x+r.width*.3,r.y+r.height*.3);await page.mouse.down();await page.mouse.move(r.x+r.width*.3+dx,r.y+r.height*.3+dy,{steps:8});await page.mouse.up();}
@@ -20,9 +21,9 @@ test('notes, pinned comments and feedback survive export, reload and portable sa
   await clean(page);await page.locator('#addNote').click();await page.locator('#world .annotation-card textarea').fill('Keep the setup paths separate.');await page.locator('#commentMode').click();
   const target=page.locator('#world > .node[data-id=welcome] .frame-wrap');const r=await target.boundingBox();await page.mouse.click(r.x+r.width*.4,r.y+r.height*.4);await page.locator('#world .comment-card textarea').fill('Shorten this copy.');await expect(page.locator('#world .annotation-pin')).toHaveCount(1);
   const pin=await page.locator('#world .annotation-pin').getAttribute('style');await drag(page,page.locator('#world > .node[data-id=welcome] .handle'),35,25);expect(await page.locator('#world .annotation-pin').getAttribute('style')).not.toBe(pin);
-  const download=page.waitForEvent('download');await page.locator('#save').click();const file=await download;const saved=info.outputPath('feedback.json');await file.saveAs(saved);await page.reload();await expect(page.locator('#world .annotation-card')).toHaveCount(2);
+  const download=page.waitForEvent('download');await toolbarClick(page,'#save');const file=await download;const saved=info.outputPath('feedback.json');await file.saveAs(saved);await page.reload();await expect(page.locator('#world .annotation-card')).toHaveCount(2);
   await page.evaluate(()=>localStorage.clear());await page.reload();await page.locator('#file').setInputFiles(saved);await expect(page.locator('#world .comment-card textarea')).toHaveValue('Shorten this copy.');
-  const portable=page.waitForEvent('download');await page.locator('#portable').click();const html=await portable;const path=info.outputPath('portable.html');await html.saveAs(path);const other=await page.context().newPage();await other.goto(new URL('file://'+path).href);await expect(other.locator('#world .annotation-card')).toHaveCount(2);await other.close();
+  const portable=page.waitForEvent('download');await toolbarClick(page,'#portable');const html=await portable;const path=info.outputPath('portable.html');await html.saveAs(path);const other=await page.context().newPage();await other.goto(new URL('file://'+path).href);await expect(other.locator('#world .annotation-card')).toHaveCount(2);await other.close();
   await page.evaluate(()=>wiredAPI.buildPrint());await expect(page.locator('#printRoot .annotation-card')).toHaveCount(2);
 });
 
@@ -55,13 +56,13 @@ for (const failure of ['full', 'blocked']) {
     await note.fill('Feedback still works.');
     await expect(page.locator('#autosaveWarning')).toContainText('Export feedback');
     await expect(page.locator('#autosaveWarning')).toBeVisible();
-    const download=page.waitForEvent('download');await page.locator('#save').click();
+    const download=page.waitForEvent('download');await toolbarClick(page,'#save');
     const file=await download;const path=info.outputPath('unsaved-feedback.json');await file.saveAs(path);
     const {readFile}=await import('node:fs/promises');const model=JSON.parse(await readFile(path,'utf8'));
     expect(model.annotations.at(-1).text).toBe('Feedback still works.');
     expect(model.flows[0].steps[0].title).toBe('Edited welcome');
     expect(model.flows[0].title).toBe('Edited flow');
-    const portable=page.waitForEvent('download');await page.locator('#portable').click();
+    const portable=page.waitForEvent('download');await toolbarClick(page,'#portable');
     const html=await portable;const portablePath=info.outputPath('unsaved-review.html');await html.saveAs(portablePath);
     const other=await page.context().newPage();await other.goto(new URL('file://'+portablePath).href);
     const recoveredHTML=await readFile(portablePath,'utf8');

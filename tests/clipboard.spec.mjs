@@ -1,3 +1,4 @@
+import { toolbarClick } from './toolbar.mjs';
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
@@ -11,7 +12,7 @@ async function open(page) {
 
 async function downloadFeedback(page, info) {
   const downloading = page.waitForEvent('download');
-  await page.getByRole('button', { name: 'Export feedback', exact: true }).click();
+  await toolbarClick(page,'#save');
   const file = info.outputPath('feedback.json');
   await (await downloading).saveAs(file);
   return JSON.parse(await readFile(file, 'utf8'));

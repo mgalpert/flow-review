@@ -36,3 +36,11 @@ for (const width of [1440, 610, 390]) {
     expect((await page.locator('#viewport').boundingBox()).width).toBe(before.width);
   });
 }
+
+test('More actions supports Space to open and Escape to close',async({page})=>{
+  await page.goto('/');const summary=page.locator('.more-tools summary');
+  await summary.focus();await page.keyboard.press('Space');
+  await expect(page.getByRole('button',{name:'Export feedback',exact:true})).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('button',{name:'Export feedback',exact:true})).toBeHidden();
+});

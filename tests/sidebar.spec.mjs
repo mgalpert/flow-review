@@ -20,7 +20,7 @@ for (const width of [1440, 610, 390]) {
     await hide.focus();
     await page.keyboard.press('Space');
     await expect(page.locator('aside')).toBeHidden();
-    await expect(page.getByRole('button', { name: 'Copy feedback JSON', exact: true })).toBeHidden();
+    await expect(page.getByRole('button', { name: 'Copy feedback', exact: true })).toBeInViewport();
     const after = await page.locator('#viewport').boundingBox();
     expect(after.x).toBe(0);
     expect(after.width - before.width).toBeCloseTo(210);
@@ -30,9 +30,17 @@ for (const width of [1440, 610, 390]) {
     await show.focus();
     await page.keyboard.press('Enter');
     await expect(page.locator('aside')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Copy feedback JSON', exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Copy feedback', exact: true })).toBeVisible();
     await expect(page.getByRole('textbox', { name: 'Canvas note', exact: true })).toHaveValue('Demo feedback stays on the board.');
     expect(await page.evaluate(() => wiredAPI.getModel().positions)).toEqual(positions);
     expect((await page.locator('#viewport').boundingBox()).width).toBe(before.width);
   });
 }
+
+test('More actions supports Space to open and Escape to close',async({page})=>{
+  await page.goto('/');const summary=page.locator('.more-tools summary');
+  await summary.focus();await page.keyboard.press('Space');
+  await expect(page.getByRole('button',{name:'Export feedback',exact:true})).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('button',{name:'Export feedback',exact:true})).toBeHidden();
+});

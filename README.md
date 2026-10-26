@@ -149,7 +149,7 @@ python3 skills/flow-review-canvas/scripts/serve_canvas.py review.html
 ```
 
 Or build and start the preview in one command by adding `--serve` to the builder.
-Open the printed local URL, click **here.now**, then **Publish snapshot**. The
+Open the printed local URL, click **Publish**, then **Publish snapshot**. The
 public link includes the current screen copy, layout, imagery, notes, pinned
 comments, and resolved feedback. **Copy public link** shares that snapshot.
 
@@ -160,12 +160,18 @@ public canvas and its HTML/feedback exports.
 
 Publishing is explicit. It sends the snapshot to here.now only after you press
 **Publish snapshot**. Further edits remain in your browser until you publish
-another snapshot; visitors do not edit a shared live database. Offline canvases
+again with **Update published link**, which replaces the snapshot at the same URL; visitors do not edit a shared live database. Offline canvases
 still work: **Save HTML** preserves your latest review before starting the
 publishing preview. The server uses Python's standard library, serves only the
 selected canvas on `127.0.0.1`, and accepts snapshots up to 64 MB. Keep it running
 while publishing. Public links remain available after it stops, until their
 here.now expiry.
+
+If a saved link has expired or disappeared, **Publish as new link** asks for confirmation before creating a replacement; failed updates never silently create another site.
+
+**Remove public review** asks for confirmation. For anonymous links, it replaces the review with a blank page at the same URL. If a local owner API key is available, the publisher can delete the site instead. A claimed site needs its owner’s API key in `HERENOW_API_KEY` or `~/.herenow/credentials` to update or delete it. Keys stay in the local server and are never included in the canvas or sent to upload storage. Blanking removes the live review, not historical versions or copies already saved by visitors.
+
+The workspace uses a floating white toolbar and sidebar on a warm dotted canvas. **More actions** groups Export feedback, Load feedback, Save HTML, Print canvas, Reset canvas, and Branch wires. The main toolbar keeps Publish, zoom, Note, and Comment close at hand.
 
 <img src="docs/screenshots/publish-desktop.png" alt="Flow Review's here.now dialog showing a real published demo link, with the sample note and resolved comment included" width="1000">
 
@@ -212,7 +218,7 @@ python3 skills/flow-review-canvas/scripts/build_canvas.py \
   --out review-v2.html
 ```
 
-Browser storage saves work locally, but explicit exports are your portable backup. Opening a file directly and serving it on localhost create separate browser-storage contexts. The board does not send your feedback anywhere automatically.
+Browser storage saves work locally, but explicit exports are your portable backup. If storage is full or blocked, editing and feedback keep working in the current tab; a persistent warning reminds you to export before reloading. Opening a file directly and serving it on localhost create separate browser-storage contexts. The board does not send your feedback anywhere automatically.
 
 ## Canvas controls
 
@@ -227,10 +233,10 @@ Browser storage saves work locally, but explicit exports are your portable backu
 | Add a note | **+ Note**, or `N` |
 | Pin a comment | **Comment**, or `C`, then click a screen |
 | Cancel comment mode | `Esc` |
-| Edit screen text | **Edit copy** |
+| Edit canvas text | Click a heading, description, or caption and type |
 | Copy review JSON | **Copy feedback JSON** in the feedback sidebar |
-| Save a portable board | **Save HTML** |
-| Print | Arrange the tan frame, then **Print canvas** |
+| Save a portable board | **More actions → Save HTML** |
+| Print | Arrange the tan frame, then **More actions → Print canvas** |
 
 Printing keeps the relative positions, sizes, wires, and notes inside your chosen frame. It does not reflow screens into automatically fitted sheets. The frame maps to an 11×17-inch landscape page; you control what goes inside it.
 

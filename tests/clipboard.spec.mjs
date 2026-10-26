@@ -1,3 +1,4 @@
+import { toolbarClick } from './toolbar.mjs';
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
@@ -11,7 +12,7 @@ async function open(page) {
 
 async function downloadFeedback(page, info) {
   const downloading = page.waitForEvent('download');
-  await page.getByRole('button', { name: 'Export feedback', exact: true }).click();
+  await toolbarClick(page,'#save');
   const file = info.outputPath('feedback.json');
   await (await downloading).saveAs(file);
   return JSON.parse(await readFile(file, 'utf8'));
@@ -24,7 +25,7 @@ test('copied JSON matches the download and round-trips the latest review', async
   await page.locator('#world > .node[data-id=welcome] .frame-wrap').click({ position: { x: 80, y: 80 } });
   await page.getByRole('textbox', { name: 'Screen comment', exact: true }).fill('Demo comment: keep the welcome screen.');
   await page.locator('#world .comment-card .resolve-note').check();
-  await page.getByRole('button', { name: 'Copy feedback JSON', exact: true }).click({ timeout: 5000 });
+  await page.getByRole('button', { name: 'Copy feedback', exact: true }).click({ timeout: 5000 });
   await expect(page.getByRole('status')).toContainText('Feedback JSON copied');
   const copied = await page.evaluate(() => navigator.clipboard.readText());
   const model = JSON.parse(copied);
@@ -49,7 +50,7 @@ for (const unavailable of ['denied', 'missing']) {
       } });
     }, unavailable);
     await open(page);
-    await page.getByRole('button', { name: 'Copy feedback JSON', exact: true }).click({ timeout: 5000 });
+    await page.getByRole('button', { name: 'Copy feedback', exact: true }).click({ timeout: 5000 });
     await expect(page.getByRole('status')).toContainText('Use Export feedback to download JSON');
     await expect(page.getByRole('textbox', { name: 'Canvas note', exact: true })).toHaveValue('Demo feedback: café and 你好.');
     const downloaded = await downloadFeedback(page, info);
@@ -61,7 +62,8 @@ test('copy feedback is visible and works at a mobile width', async ({ page }) =>
   await page.setViewportSize({ width: 390, height: 844 });
   await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
   await page.goto('/');
-  const button = page.getByRole('button', { name: 'Copy feedback JSON', exact: true });
+  await page.locator('#toggleSidebar').click();
+  const button = page.locator('header').getByRole('button', { name: 'Copy feedback', exact: true });
   await expect(button).toBeInViewport({ timeout: 5000 });
   await button.click();
   await expect(page.getByRole('status')).toContainText('Feedback JSON copied');

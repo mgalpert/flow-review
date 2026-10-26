@@ -40,7 +40,7 @@ python3 <skill-dir>/scripts/serve_canvas.py /absolute/path/review.html
 ```
 
 Alternatively add `--serve` to the builder. Both commands print a loopback URL
-and keep running. The canvas's **here.now → Publish snapshot** flow uploads the
+and keep running. The canvas's **Publish → Publish snapshot** flow uploads the
 latest layout, imagery, notes, pinned comments, and resolved feedback. Publishing
 requires that explicit action; building, opening, and editing remain local.
 Do not publish a review unless the user asks for publication or chooses the

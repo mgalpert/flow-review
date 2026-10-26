@@ -149,7 +149,7 @@ python3 skills/flow-review-canvas/scripts/serve_canvas.py review.html
 ```
 
 Or build and start the preview in one command by adding `--serve` to the builder.
-Open the printed local URL, click **here.now**, then **Publish snapshot**. The
+Open the printed local URL, click **Publish**, then **Publish snapshot**. The
 public link includes the current screen copy, layout, imagery, notes, pinned
 comments, and resolved feedback. **Copy public link** shares that snapshot.
 
